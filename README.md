@@ -4,7 +4,7 @@ A fork of [Chili3D](https://github.com/xiangechen/chili3d) that embeds an AI ass
 
 **Live:** <https://chili3d-ai.vercel.app>
 
-![Screenshot](./screenshots/screenshot.png)
+![Snowman built by the AI assistant](./screenshots/snowman.png)
 
 ## What this fork adds
 

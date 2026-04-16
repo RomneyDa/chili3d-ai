@@ -232,13 +232,18 @@ export function ChatPanel({
 
     // Load transcript when the active document changes.
     //
-    // Skip mid-turn swaps: if a tool call creates a new document (say the AI
-    // fires `new_document`), `activeViewChanged` flips docId before the stream
-    // finishes. Resetting history/streamingParts here would blank the chat
-    // for a frame and make the empty-state suggestions flash. When busy flips
-    // back to false we re-run and pick up whatever the current docId is.
+    // Two things to guard against:
+    //   1. Mid-turn doc swaps (e.g. AI calls `new_document` → `activeViewChanged`
+    //      fires before the stream finishes). Skip while `busy` so we don't
+    //      blank the chat.
+    //   2. Spurious re-runs when `busy` flips back to false. Without this
+    //      guard, every send completion re-loaded the current doc from IDB
+    //      and raced with the async `saveChat` the send had just fired —
+    //      occasionally overwriting freshly-streamed messages with a stale
+    //      pre-turn snapshot.
     useEffect(() => {
         if (busy) return;
+        if (loadedDocRef.current === docId) return;
         let cancelled = false;
         setError(null);
         setStreamingParts(null);
