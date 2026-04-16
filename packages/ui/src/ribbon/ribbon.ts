@@ -99,8 +99,12 @@ export class RibbonUI extends HTMLElement {
             { className: style.left },
             div(
                 { className: style.appIcon, onclick: () => PubSub.default.pub("displayHome", true) },
-                svg({ className: style.icon, icon: "icon-chili" }),
-                span({ id: "appName", textContent: `Chili3D - v${__APP_VERSION__}` }),
+                div(
+                    { className: style.logoBadge },
+                    svg({ className: style.icon, icon: "icon-chili" }),
+                    span({ className: style.aiBadge, textContent: "AI" }),
+                ),
+                span({ id: "appName", textContent: `Chili3D-AI - v${__APP_VERSION__}` }),
             ),
             div(
                 { className: style.ribbonTitlePanel },
@@ -181,7 +185,7 @@ export class RibbonUI extends HTMLElement {
         return div(
             { className: style.right },
             a(
-                { href: "https://github.com/xiangechen/chili3d", target: "_blank" },
+                { href: "https://github.com/romneyda/chili3d-ai", target: "_blank" },
                 svg({ title: "Github", className: style.icon, icon: "icon-github" }),
             ),
         );

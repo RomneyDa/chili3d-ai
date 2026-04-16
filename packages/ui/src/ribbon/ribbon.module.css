@@ -37,10 +37,36 @@
                 background-color: var(--hover-background-color);
             }
 
-            .icon {
+            .logoBadge {
+                position: relative;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 28px;
+                height: 28px;
+            }
+
+            .logoBadge .icon {
                 width: 24px;
                 height: 24px;
                 padding: 2px;
+            }
+
+            .logoBadge .aiBadge {
+                position: absolute;
+                right: -4px;
+                bottom: -2px;
+                background: var(--primary-color);
+                color: #ffffff;
+                font-size: 8px;
+                font-weight: 800;
+                letter-spacing: 0.3px;
+                padding: 1px 3px;
+                border-radius: 3px;
+                line-height: 1;
+                margin-left: 0;
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
             }
 
             span {
@@ -245,9 +271,14 @@
     display: flex;
     flex-direction: row;
     justify-content: stretch;
-    flex: 1 1 auto;
-    height: 32px;
+    flex: 0 0 auto;
     background-color: var(--panel-background-color);
+}
+
+/* Only draw height + border when there's an active command context inside;
+   otherwise this panel leaves a 32px empty strip under the ribbon. */
+.commandContextPanel:not(:empty) {
+    height: 32px;
     border-bottom: 1px solid var(--border-color);
 }
 

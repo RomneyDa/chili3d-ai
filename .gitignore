@@ -1,6 +1,8 @@
 node_modules
 build
 dist
+public/chat
+.vercel
 coverage
 .VSCodeCounter
 .DS_Store

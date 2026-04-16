@@ -4,6 +4,7 @@
 import {
     type CommandKeys,
     Config,
+    Constants,
     debounce,
     I18n,
     type IApplication,
@@ -67,9 +68,27 @@ export class MainWindow extends HTMLElement implements IWindow {
         await this.fetchIconFont();
 
         this.applyTheme();
-        await this._initHome(app);
         this._initEditor(app);
         this._initEventHandlers(app);
+        // Skip the welcome screen on first run: if the user has no recent
+        // documents there's nothing useful to show there, so we drop them
+        // straight into a fresh document. On subsequent runs the recents
+        // screen remains the landing page.
+        const hasRecents = await this._hasRecentDocuments(app);
+        if (hasRecents) {
+            await this._initHome(app);
+        } else {
+            PubSub.default.pub("executeCommand", "doc.new");
+        }
+    }
+
+    private async _hasRecentDocuments(app: IApplication): Promise<boolean> {
+        try {
+            const page = await app.storage.page(Constants.DBName, Constants.RecentTable, 0);
+            return Array.isArray(page) && page.length > 0;
+        } catch {
+            return false;
+        }
     }
 
     protected async loadCss() {

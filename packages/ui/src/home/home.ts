@@ -77,8 +77,12 @@ export class Home extends HTMLElement {
     private logoSection() {
         return div(
             { className: style.logo },
-            svg({ icon: "icon-chili" }),
-            span({ textContent: "CHILI3D" }),
+            div(
+                { className: style.logoBadge },
+                svg({ icon: "icon-chili" }),
+                span({ className: style.aiBadge, textContent: "AI" }),
+            ),
+            span({ textContent: "CHILI3D-AI" }),
             span({ className: style.version, textContent: __APP_VERSION__ }),
         );
     }
@@ -144,25 +148,26 @@ export class Home extends HTMLElement {
             a(
                 {
                     className: style.socialItem,
-                    href: "https://github.com/xiangechen/chili3d",
+                    href: "https://github.com/romneyda/chili3d-ai",
                     target: "_blank",
                     rel: "noopener noreferrer",
                 },
                 svg({ icon: "icon-github" }),
                 label({ textContent: "GitHub" }),
             ),
-            button(
-                {
-                    className: style.socialItem,
-                    onclick: () => {
-                        PubSub.default.pub("executeCommand", "wechat.group");
-                    },
-                },
-                svg({
-                    icon: "icon-wechatGroup",
-                }),
-                label({ textContent: new Localize("command.wechat.group") }),
-            ),
+            // WeChat group link disabled in the AI fork.
+            // button(
+            //     {
+            //         className: style.socialItem,
+            //         onclick: () => {
+            //             PubSub.default.pub("executeCommand", "wechat.group");
+            //         },
+            //     },
+            //     svg({
+            //         icon: "icon-wechatGroup",
+            //     }),
+            //     label({ textContent: new Localize("command.wechat.group") }),
+            // ),
         );
     }
 

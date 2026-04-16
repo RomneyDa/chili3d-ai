@@ -7,4 +7,5 @@ export * from "./performanceTest";
 export * from "./saveDocument";
 export * from "./toFile";
 export * from "./toggleDynamicWorkplane";
-export * from "./wechatGroup";
+// WeChat group command disabled in the AI fork.
+// export * from "./wechatGroup";

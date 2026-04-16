@@ -68,14 +68,37 @@
             align-items: center;
             margin: 32px;
 
-            & svg {
+            & .logoBadge {
+                position: relative;
+                width: 64px;
+                height: 64px;
+            }
+
+            & .logoBadge svg {
                 width: 64px;
                 height: 64px;
                 color: var(--foreground-color);
                 fill: currentColor;
             }
 
-            & span {
+            & .logoBadge .aiBadge {
+                position: absolute;
+                right: -8px;
+                bottom: -4px;
+                background: var(--primary-color);
+                color: #ffffff;
+                font-size: 11px;
+                font-weight: 800;
+                letter-spacing: 0.5px;
+                padding: 2px 6px;
+                border-radius: 6px;
+                line-height: 1;
+                margin: 0;
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+            }
+
+            & > span {
                 margin-top: 10px;
                 color: var(--foreground-color);
                 letter-spacing: 6px;
