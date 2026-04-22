@@ -99,7 +99,7 @@
     position: absolute;
     top: 8px;
     right: 8px;
-    z-index: 5;
+    z-index: 1000;
     border: 1px solid var(--border-color, #555);
     background: rgba(30, 30, 30, 0.85);
     color: #ddd;
@@ -180,5 +180,9 @@
         & .aiSidebar {
             display: none;
         }
+    }
+
+    .aiToggle {
+        display: none;
     }
 }
