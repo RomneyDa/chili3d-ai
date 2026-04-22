@@ -3,6 +3,7 @@
 
 import { AppBuilder } from "@chili3d/builder";
 import { type IApplication, Logger } from "@chili3d/core";
+import { showAboutAiModalOnce } from "./aboutModal";
 import { Loading } from "./loading";
 
 const loading = new Loading();
@@ -22,6 +23,8 @@ async function handleApplicaionBuilt(app: IApplication) {
         Logger.info(`loading file from: ${url}`);
         await app.loadFileFromUrl(url);
     }
+
+    showAboutAiModalOnce();
 }
 
 // prettier-ignore
